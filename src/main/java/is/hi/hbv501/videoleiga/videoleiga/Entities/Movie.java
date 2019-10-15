@@ -1,9 +1,10 @@
 package is.hi.hbv501.videoleiga.videoleiga.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -16,13 +17,22 @@ public class Movie {
     private String description;
     private Double rating;
 
+    @ElementCollection(targetClass=Genre.class)
+    @Column(name="genre", nullable=false)
+    @CollectionTable(name="movie_genres", joinColumns= {@JoinColumn(name="movie_id")})
+    public Set<Genre> genres;
+
+    @OneToMany(mappedBy = "movie")
+    private List<RentalLog> rentals = new ArrayList<>();
+
     public Movie() {
     }
 
-    public Movie(String title, String description, Double rating) {
+    public Movie(String title, String description, Double rating, HashSet<Genre> genres) {
         this.title = title;
         this.description = description;
         this.rating = rating;
+        this.genres = genres;
     }
 
     public long getId() {
@@ -55,5 +65,10 @@ public class Movie {
 
     public void setRating(Double rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return this.title;
     }
 }
