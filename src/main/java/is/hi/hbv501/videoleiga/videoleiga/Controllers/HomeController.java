@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     private MovieService movieService;
     @Autowired
-    public HomeController(MovieService movieService){this.movieService = movieService;}
+    public HomeController(MovieService movieService){
+
+        this.movieService = movieService;
+    }
 
     @RequestMapping("/")
     public String Home(Model model){
