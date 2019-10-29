@@ -2,6 +2,7 @@ package is.hi.hbv501.videoleiga.videoleiga.Entities;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ public class User {
     private long id;
 
     public String uName;
+
     public String password;
+
 
     @OneToMany(mappedBy = "user")
     private List<RentalLog> rentals = new ArrayList<>();
