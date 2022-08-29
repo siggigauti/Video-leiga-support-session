@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @EnableJpaRepositories
 public class VideoleigaApplication {
-
+	//Adding a comment
 	public static void main(String[] args) {
 		SpringApplication.run(VideoleigaApplication.class, args);
 	}
